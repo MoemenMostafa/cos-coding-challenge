@@ -13,8 +13,10 @@ export class AuthService {
     private loggedInUserSubject: BehaviorSubject<Auth>;
     public loggedInUser: Observable<Auth>;
 
+    private userStore = 'loggedInUser';
+
     constructor(private http: HttpClient) {
-        this.loggedInUserSubject = new BehaviorSubject<Auth>(JSON.parse(localStorage.getItem('currentUser')));
+        this.loggedInUserSubject = new BehaviorSubject<Auth>(JSON.parse(localStorage.getItem(this.userStore)));
         this.loggedInUser = this.loggedInUserSubject.asObservable();
     }
 
@@ -26,7 +28,7 @@ export class AuthService {
         return this.http.put<any>(`${environment.apiUrl}/v1/authentication/${userMailId}`, { password })
             .pipe(map(auth => {
                 if (auth && auth.token) {
-                    localStorage.setItem('currentUser', JSON.stringify(auth));
+                    localStorage.setItem(this.userStore, JSON.stringify(auth));
                     this.loggedInUserSubject.next(auth);
                 }
 
@@ -35,7 +37,7 @@ export class AuthService {
     }
 
     logout() {
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem(this.userStore);
         this.loggedInUserSubject.next(null);
     }
 }
