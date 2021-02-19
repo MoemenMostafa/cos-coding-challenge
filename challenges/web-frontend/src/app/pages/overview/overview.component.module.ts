@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './overview.component';
+import { OverviewRoutingModule } from './overview-routing.module';
 
 @NgModule({
   declarations: [
@@ -8,7 +9,7 @@ import { OverviewComponent } from './overview.component';
   ],
   imports: [
     CommonModule,
-    OverviewComponent
+    OverviewRoutingModule
   ]
 })
 export class OverviewComponentModule { }
