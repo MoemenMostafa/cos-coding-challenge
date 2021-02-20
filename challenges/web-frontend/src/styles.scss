@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --header-height: 55px;
+    --primary-bg-color: #f3f4f6;
+    --secondary-bg-color: #ffd451;
+    --primary-button-color: #474b57;
+    --primary-button-text-color: #eef1f7;
+    --primary-text-big-color: #474b57;
+    --primary-text-sub-color: #474b57cc;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    /*
+     * Dark Colors
+     * -------------------------------------------
+     */
+  
+    body {
+    }
+}
