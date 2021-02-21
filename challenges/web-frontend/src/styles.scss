@@ -1,22 +1,90 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-cos: (
+    50 : #fffaea,
+    100 : #fff2cb,
+    200 : #ffeaa8,
+    300 : #ffe185,
+    400 : #ffda6b,
+    500 : #ffd451,
+    600 : #ffcf4a,
+    700 : #ffc940,
+    800 : #ffc337,
+    900 : #ffb927,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #fff0d4,
+    A700 : #ffe8bb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$web-frontend-primary: mat-palette($md-cos);
+$web-frontend-accent: mat-palette($md-cos, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$web-frontend-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$web-frontend-theme: mat-light-theme($web-frontend-primary, $web-frontend-accent, $web-frontend-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($web-frontend-theme);
+
 /* You can add global styles to this file, and also import other style files */
 
-:root {
-    --header-height: 55px;
-    --primary-bg-color: #f3f4f6;
-    --secondary-bg-color: #ffd451;
-    --primary-button-color: #474b57;
-    --primary-button-text-color: #eef1f7;
-    --primary-text-big-color: #474b57;
-    --primary-text-sub-color: #474b57cc;
-}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Din alternate', "Helvetica Neue", sans-serif; }
 
 
-@media (prefers-color-scheme: dark) {
-    /*
-     * Dark Colors
-     * -------------------------------------------
-     */
-  
-    body {
+.snackbar {
+    max-width: 90% !important;
+    min-width: 300px;
+    margin-left: auto !important; // center align from left
+    margin-right: auto !important; // center align from right
+    margin-bottom: 1rem !important; 
+    margin-top: 5rem !important;
+    padding: 10px !important; // spacing between the text and boundary
+    // background-color: green;
+    color: white;
+
+    .mat-button-wrapper {
+        // color: black !important; // action text color
+    }
+    &.error {
+        background-color: red;
     }
 }

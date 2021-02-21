@@ -1,3 +1,7 @@
-<div class="header-container">
+<mat-toolbar color="primary">
   <img alt="Caronsale Logo" src="https://global-uploads.webflow.com/5e38202569b4c2b7f3f33aa1/5e38343084bb96cdce49b5fe_logo.svg">
-</div>
+  <span class="spacer"></span>
+  <button *ngIf="isLoggedIn" mat-icon-button aria-label="logout" (click)="logout()">
+    <mat-icon>power_settings_new</mat-icon>
+  </button>
+</mat-toolbar>

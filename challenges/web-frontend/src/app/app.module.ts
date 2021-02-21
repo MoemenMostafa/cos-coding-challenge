@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,15 @@ import { ComponentsModule } from './components/components.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000 , horizontalPosition: 'center', verticalPosition: 'top', panelClass: ['snackebar']}}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
