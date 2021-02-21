@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { Auth } from 'src/app/models/auth';
-import { IUserRole, IUsertype } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -43,11 +42,16 @@ export class LoginComponent implements OnInit {
         .subscribe(
             data => {
                 this.router.navigate(['overview']);
+                this.loading = false;
             },
             error => {
-                // this.alertService.error(error);
+                this.openSnackBar(error);
                 this.loading = false;
             });
+  }
+
+  openSnackBar(err, action = "close") {
+    this.snackBar.open(err, action, {panelClass:['snackbar', 'error']});
   }
 
 }
