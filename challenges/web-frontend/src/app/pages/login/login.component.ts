@@ -1,9 +1,10 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { finalize, first } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { AppErrorHandler } from 'src/app/services/error/app-error.handler';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -30,6 +36,12 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
+
+    this.route.queryParams.subscribe(params => {
+      this.returnUrl = params['returnUrl'];
+    });
+
+
     this.submitted = true;
 
     if (this.loginForm.invalid) {
@@ -38,20 +50,14 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authService.login(this.f.userMailId.value, this.f.password.value)
-        .pipe(first())
+        .pipe(
+          first(),
+          finalize(() => this.loading = false),
+        )
         .subscribe(
             data => {
-                this.router.navigate(['overview']);
-                this.loading = false;
-            },
-            error => {
-                this.openSnackBar(error);
-                this.loading = false;
+                this.router.navigateByUrl(this.returnUrl);
             });
-  }
-
-  openSnackBar(err, action = "close") {
-    this.snackBar.open(err, action, {panelClass:['snackbar', 'error']});
   }
 
 }

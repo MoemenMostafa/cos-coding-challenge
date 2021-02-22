@@ -1,13 +1,13 @@
-<mat-grid-list [cols]="colNumber" rowHeight="4:5" (window:resize)="onResize($event)">
-  <mat-grid-tile
-  *ngFor="let auction of auctions?.items">
-  <mat-card >
-      <img mat-card-image [src]="auction?.associatedVehicle.vehicleImages[0]?.url" [alt]="auction?.label">
+<div *ngIf="auctions?.items" [@cardsAnimation]>
+  <mat-grid-list  [cols]="colNumber" rowHeight="4:5" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let auction of auctions?.items">
+      <mat-card>
+        <img mat-card-image [src]="auction?.associatedVehicle.vehicleImages[0]?.url" [alt]="auction?.label">
+        <mat-card-content>
+          <h3>{{auction?.label}}</h3>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 
-      <h3>{{auction?.label}}</h3>
-    <mat-card-content>
-
-    </mat-card-content>
-  </mat-card></mat-grid-tile>
-
-</mat-grid-list>
