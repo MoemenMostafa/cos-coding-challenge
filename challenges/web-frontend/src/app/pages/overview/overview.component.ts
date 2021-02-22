@@ -8,12 +8,30 @@ import { interval } from 'rxjs';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
+  breakpoint;
   auctions;
+  colNumber;
 
   constructor(private auctoinsService: AuctoinsService) {}
 
   ngOnInit() {
     this.fetch()  
+    this.colNumber = this.getColNumber(window);
+  }
+
+  onResize(event) {
+    this.colNumber = this.getColNumber(event.target);
+  }
+
+  getColNumber(element){
+    if (element.innerWidth > 1200)
+    return 4
+    if (element.innerWidth > 800 && element.innerWidth <= 1200)
+      return 3
+    if (element.innerWidth > 500 && element.innerWidth <= 800)
+      return 2
+    if (element.innerWidth <= 500)
+      return 1
   }
 
   fetch(){
