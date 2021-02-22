@@ -8,7 +8,7 @@
         <p>
             <mat-form-field appearance="outline">
                 <mat-label for="userMailId">Email</mat-label>
-                <input matInput value="dealership@alwaysAvailable.co" type="text" formControlName="userMailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
+                <input matInput type="text" formControlName="userMailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
                 <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
                     <div *ngIf="f.userMailId.errors.required">Email is required</div>
                 </mat-error>
@@ -17,7 +17,7 @@
         <p>
             <mat-form-field appearance="outline">
                 <mat-label for="userMailId">Password</mat-label>
-                <input matInput value="test12" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
+                <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
                 <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
                     <div *ngIf="f.userMailId.errors.required">Password is required</div>
                 </mat-error>

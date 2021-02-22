@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuctoinsService } from 'src/app/services/auctions/auctoins.service';
 import { interval } from 'rxjs';
 import { transition, trigger, query, style, stagger, animate } from '@angular/animations';
+import { startTimeRange } from '@angular/core/src/profile/wtf_impl';
 
 @Component({
   selector: 'app-overview',
@@ -24,6 +25,7 @@ export class OverviewComponent implements OnInit {
   breakpoint;
   auctions;
   colNumber;
+  timer;
 
   constructor(private auctoinsService: AuctoinsService) {}
 
@@ -49,8 +51,26 @@ export class OverviewComponent implements OnInit {
 
   fetch(){
     this.auctoinsService.getAuctions().subscribe(
-      data => {this.auctions = data}
+      data => {
+        this.auctions = data
+        if (!this.timer) this.startTimer();
+      }
     );
+  }
+  
+  startTimer(){
+   this.timer = setInterval(
+      ()=> {
+        for(let key in this.auctions.items){
+          if (this.auctions.items.hasOwnProperty(key)) {
+          this.auctions.items[key].remainingTimeInSeconds--
+        }
+      }
+      }  , 1000)
+  }
+
+  onDestory(){
+    clearInterval(this.timer)
   }
 
 }

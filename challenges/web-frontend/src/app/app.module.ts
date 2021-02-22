@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
-import { AppErrorHandler } from './services/error/app-error.handler'
+import { AppErrorHandler } from './services/error/app-error.handler';
 
 @NgModule({
   declarations: [
