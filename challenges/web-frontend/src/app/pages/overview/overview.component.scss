@@ -19,3 +19,13 @@ mat-card-content {
     left: 10px;
     bottom: 0;
 }
+
+.highest {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    opacity: 0.8;
+}
