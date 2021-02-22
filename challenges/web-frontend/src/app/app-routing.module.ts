@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   {
     path: 'overview',
     loadChildren: () => import('./pages/overview/overview.component.module').then( m => m.OverviewComponentModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: {roles: ['{SALESMAN_USER}']}
   },
 
   // otherwise redirect to home
