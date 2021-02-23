@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.component.module').then( m => m.LoginComponentModule)
+    loadChildren: './pages/login/login.component.module#LoginComponentModule'
   },
   {
     path: 'overview',
-    loadChildren: () => import('./pages/overview/overview.component.module').then( m => m.OverviewComponentModule),
+    loadChildren: './pages/overview/overview.component.module#OverviewComponentModule',
     canActivate: [AuthGuard, RoleGuard],
     data: {roles: ['{SALESMAN_USER}']}
   },
