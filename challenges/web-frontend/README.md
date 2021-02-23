@@ -1,3 +1,37 @@
+# Important Note
+
+### Node 12.x was used to build the app so if you face the following error:
+
+``
+Node Sass could not find a binding for your current environment
+``
+
+Please run the following command first:
+
+```
+npm rebuild node-sass
+```
+
+To run the app
+```
+ng serve
+```
+
+To build the app [prod environment]
+```
+ng build --prod
+```
+
+
+## Live Demo (Netlify):
+
+[Demo URL](https://unruffled-keller-7e8125.netlify.app)
+
+
+<br>
+<br>
+<br>
+
 # Web Frontend Challenge
 
 Welcome to the CarOnSale Web Frontend Coding Challenge.
@@ -45,32 +79,5 @@ If you have any questions, feel free to contact us via coding-challenge@caronsal
 <br>
 <br>
 
-# Important Note
 
-### Node 12.x was used to build the app so if you face the following error:
-
-``
-Node Sass could not find a binding for your current environment
-``
-
-Please run the following command first:
-
-```
-npm rebuild node-sass
-```
-
-To run the app
-```
-ng serve
-```
-
-To build the app [prod environment]
-```
-ng build --prod
-```
-
-
-## Live Demo (Netlify):
-
-[Demo URL](https://unruffled-keller-7e8125.netlify.app)
 
