@@ -38,3 +38,33 @@ General Hints:
 Please send the link to the forked repo to coding-challenge@caronsale.de.
 
 If you have any questions, feel free to contact us via coding-challenge@caronsale.de
+
+
+
+<br>
+<br>
+<br>
+
+# Important Note
+
+### Node 12.x was used to build the app so if you face the following error:
+
+``
+Node Sass could not find a binding for your current environment
+``
+
+Please run the following command first:
+
+```
+npm rebuild node-sass
+```
+
+To run the app
+```
+ng serve
+```
+
+To build the app [prod environment]
+```
+ng build --prod
+```
