@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material';
 
 import { CardComponent } from './card.component';
 
@@ -8,7 +9,10 @@ describe('CardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardComponent ]
+      declarations: [ CardComponent ],
+      imports: [
+        MatCardModule
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +23,7 @@ describe('CardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the card component', () => {
     expect(component).toBeTruthy();
   });
 });

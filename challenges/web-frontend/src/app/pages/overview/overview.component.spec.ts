@@ -1,4 +1,10 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule, MatCardModule, MatGridListModule } from '@angular/material';
+import { FuelTypePipe } from 'src/app/pipes/fuel-type.pipe';
+import { SecondsToHourPipe } from 'src/app/pipes/seconds-to-hour.pipe';
+import { TransmissionTypePipe } from 'src/app/pipes/transmission-type.pipe';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 import { OverviewComponent } from './overview.component';
 
@@ -8,7 +14,18 @@ describe('OverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OverviewComponent ]
+      declarations: [ 
+        OverviewComponent,
+        FuelTypePipe,
+        TransmissionTypePipe,
+        SecondsToHourPipe
+      ],
+      imports: [
+        MatCardModule,
+        MatButtonModule,
+        MatGridListModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));

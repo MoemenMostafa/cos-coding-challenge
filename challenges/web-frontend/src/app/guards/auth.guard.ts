@@ -7,12 +7,14 @@ import { AuthService } from '../services/auth/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  isLoggedIn;
+
   constructor(private router: Router, private authService: AuthService) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)  {
-    let loggedInUser = this.authService.loggedInUserValue;
+    this.isLoggedIn = this.authService.loggedInUserValue;
 
-    if (loggedInUser) {
+    if (this.isLoggedIn) {
       return true;
     }
     this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
