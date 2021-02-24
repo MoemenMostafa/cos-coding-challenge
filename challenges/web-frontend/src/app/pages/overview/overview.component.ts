@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuctoinsService } from 'src/app/services/auctions/auctoins.service';
-import { interval } from 'rxjs';
-import { transition, trigger, query, style, stagger, animate } from '@angular/animations';
-import { startTimeRange } from '@angular/core/src/profile/wtf_impl';
+import { AuctionsService } from 'src/app/services/auctions/auctions.service';
+import { transition, trigger, query, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-overview',
@@ -11,11 +9,9 @@ import { startTimeRange } from '@angular/core/src/profile/wtf_impl';
   animations: [
     trigger('cardsAnimation', [
       transition('* => *', [
-        query('mat-grid-list', style({ transform: 'translateX(-100%)'})),
+        query('mat-grid-list', style({ transform: 'translateX(-100%)' })),
         query('mat-grid-list',
-          // stagger('600ms', [
-            animate('700ms 0s ease-in-out', style({ transform: 'translateX(0)'}))
-        // ])
+          animate('700ms 0s ease-in-out', style({ transform: 'translateX(0)' }))
         )
       ])
     ])
@@ -27,10 +23,10 @@ export class OverviewComponent implements OnInit {
   colNumber;
   timer;
 
-  constructor(private auctoinsService: AuctoinsService) {}
+  constructor(private auctionsService: AuctionsService) { }
 
   ngOnInit() {
-    this.fetch()  
+    this.fetch();
     this.colNumber = this.getColNumber(window);
   }
 
@@ -38,39 +34,43 @@ export class OverviewComponent implements OnInit {
     this.colNumber = this.getColNumber(event.target);
   }
 
-  getColNumber(element){
-    if (element.innerWidth > 1200)
-      return 4
-    if (element.innerWidth > 800 && element.innerWidth <= 1200)
-      return 3
-    if (element.innerWidth > 500 && element.innerWidth <= 800)
-      return 2
-    if (element.innerWidth <= 500)
-      return 1
+  getColNumber(element) {
+    if (element.innerWidth > 1200) {
+      return 4;
+    }
+    if (element.innerWidth > 800 && element.innerWidth <= 1200) {
+      return 3;
+    }
+    if (element.innerWidth > 500 && element.innerWidth <= 800) {
+      return 2;
+    }
+    if (element.innerWidth <= 500) {
+      return 1;
+    }
   }
 
-  fetch(){
-    this.auctoinsService.getAuctions().subscribe(
+  fetch() {
+    this.auctionsService.getAuctions().subscribe(
       data => {
-        this.auctions = data
-        if (!this.timer) this.startTimer();
+        this.auctions = data;
+        if (!this.timer) { this.startTimer(); }
       }
     );
   }
-  
-  startTimer(){
-   this.timer = setInterval(
-      ()=> {
-        for(let key in this.auctions.items){
+
+  startTimer() {
+    this.timer = setInterval(
+      () => {
+        for (const key in this.auctions.items) {
           if (this.auctions.items.hasOwnProperty(key)) {
-          this.auctions.items[key].remainingTimeInSeconds--
+            this.auctions.items[key].remainingTimeInSeconds--;
+          }
         }
-      }
-      }  , 1000)
+      }, 1000);
   }
 
-  onDestory(){
-    clearInterval(this.timer)
+  onDestory() {
+    clearInterval(this.timer);
   }
 
 }

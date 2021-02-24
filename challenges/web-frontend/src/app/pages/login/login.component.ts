@@ -18,17 +18,17 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private authService: AuthService, 
-    private router: Router, 
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
     private route: ActivatedRoute,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       userMailId: ['', Validators.required],
       password: ['', Validators.required]
-  });
+    });
 
   }
 
@@ -38,26 +38,26 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     this.route.queryParams.subscribe(params => {
-      this.returnUrl = params['returnUrl'];
+      this.returnUrl = params.returnUrl;
     });
 
 
     this.submitted = true;
 
     if (this.loginForm.invalid) {
-        return;
+      return;
     }
 
     this.loading = true;
     this.authService.login(this.f.userMailId.value, this.f.password.value)
-        .pipe(
-          first(),
-          finalize(() => this.loading = false),
-        )
-        .subscribe(
-            data => {
-                this.router.navigateByUrl(this.returnUrl);
-            });
+      .pipe(
+        first(),
+        finalize(() => this.loading = false),
+      )
+      .subscribe(
+        data => {
+          this.router.navigateByUrl(this.returnUrl);
+        });
   }
 
 }

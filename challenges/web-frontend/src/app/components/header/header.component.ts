@@ -12,14 +12,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.loggedInUser.subscribe(
-      (auth)=>{
-        if(auth) this.isLoggedIn = true;
-        if(!auth) this.isLoggedIn = false;
+      (auth) => {
+        if (auth) { this.isLoggedIn = true; }
+        if (!auth) { this.isLoggedIn = false; }
       }
-    )
+    );
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     location.reload();
   }

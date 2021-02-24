@@ -1,28 +1,31 @@
 <mat-card>
     <div class="logo">
-        <img alt="Caronsale Logo" src="https://global-uploads.webflow.com/5e38202569b4c2b7f3f33aa1/5e38343084bb96cdce49b5fe_logo.svg">
+        <img alt="Caronsale Logo"
+            src="https://global-uploads.webflow.com/5e38202569b4c2b7f3f33aa1/5e38343084bb96cdce49b5fe_logo.svg">
     </div>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label for="userMailId">Email</mat-label>
-                <input matInput type="text" formControlName="userMailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
-                <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
-                    <div *ngIf="f.userMailId.errors.required">Email is required</div>
-                </mat-error>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label for="userMailId">Password</mat-label>
-                <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
-                <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
-                    <div *ngIf="f.userMailId.errors.required">Password is required</div>
-                </mat-error>
-            </mat-form-field>
-        </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label for="userMailId">Email</mat-label>
+                    <input matInput type="text" formControlName="userMailId" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
+                    <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
+                        <div *ngIf="f.userMailId.errors.required">Email is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label for="userMailId">Password</mat-label>
+                    <input matInput type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.userMailId.errors }" />
+                    <mat-error *ngIf="submitted && f.userMailId.errors" class="error">
+                        <div *ngIf="f.userMailId.errors.required">Password is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </p>
             <div class="button">
                 <button mat-button color="primary" [disabled]="loading">Login</button>
                 <mat-spinner *ngIf="loading" diameter="35"></mat-spinner>
@@ -30,4 +33,3 @@
         </form>
     </mat-card-content>
 </mat-card>
-

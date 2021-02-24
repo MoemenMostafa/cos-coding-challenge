@@ -27,7 +27,9 @@ import { AppErrorHandler } from './services/error/app-error.handler';
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 5000 , horizontalPosition: 'center', verticalPosition: 'top', panelClass: ['snackebar']}},
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue:
+      {duration: 5000 , horizontalPosition: 'center', verticalPosition: 'top', panelClass: ['snackbar']}
+    },
   ],
   bootstrap: [AppComponent]
 })

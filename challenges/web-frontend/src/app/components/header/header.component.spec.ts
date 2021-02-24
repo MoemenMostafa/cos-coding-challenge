@@ -12,7 +12,7 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      imports: [ 
+      imports: [
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,

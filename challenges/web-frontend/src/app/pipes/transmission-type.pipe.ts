@@ -6,13 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TransmissionTypePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    switch(value){
+    switch (value) {
       case 0:
-        return "Manual"
-      case 1: 
-        return "Automatic"
+        return 'Manual';
+      case 1:
+        return 'Automatic';
     }
-    return "Unkown";
+    return 'Unknown';
   }
 
 }

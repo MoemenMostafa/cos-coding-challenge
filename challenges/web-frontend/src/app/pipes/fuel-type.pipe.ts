@@ -6,13 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FuelTypePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    switch(value){
+    switch (value) {
       case 0:
-        return "Gasoline"
-      case 1: 
-        return "Diesel"
+        return 'Gasoline';
+      case 1:
+        return 'Diesel';
     }
-    return "Unkown";
+    return 'Unknown';
   }
 
 }

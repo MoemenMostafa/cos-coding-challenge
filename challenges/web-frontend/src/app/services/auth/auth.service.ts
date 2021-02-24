@@ -6,7 +6,7 @@ import { Auth } from 'src/app/models/auth';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 

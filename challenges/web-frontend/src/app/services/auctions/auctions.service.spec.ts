@@ -1,15 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { AuctoinsService } from './auctoins.service';
+import { AuctionsService } from './auctions.service';
 
-describe('AuctoinsService', () => {
+describe('AuctionsService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientModule ]
+    imports: [HttpClientModule]
   }));
 
   it('should be created', () => {
-    const service: AuctoinsService = TestBed.get(AuctoinsService);
+    const service: AuctionsService = TestBed.get(AuctionsService);
     expect(service).toBeTruthy();
   });
 });

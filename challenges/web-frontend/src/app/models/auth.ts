@@ -1,8 +1,8 @@
-import { Userbase } from "./user";
+import { Userbase } from './user';
 
-export class Auth extends Userbase{
+export class Auth extends Userbase {
     authenticated: boolean;
     userId: string;
     token: string;
-    authenticationChallenge: string
+    authenticationChallenge: string;
 }

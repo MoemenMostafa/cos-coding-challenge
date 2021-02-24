@@ -1,13 +1,13 @@
 export class Userbase {
-    "internalUserId": number;
-    "internalUserUuid": string;
-    "privileges": string; // {PUBLIC_USER} ~ {DEALERSHIP_USER} ~ {SALESMAN_USER}
-    "type": IUsertype;
-    "userRole": IUserRole;
+    'internalUserId': number;
+    'internalUserUuid': string;
+    'privileges': string; // {PUBLIC_USER} ~ {DEALERSHIP_USER} ~ {SALESMAN_USER}
+    'type': IUsertype;
+    'userRole': IUserRole;
 }
 
 export class User extends Userbase {
-    "mailAddress": string;
+    'mailAddress': string;
 }
 
 export enum IUsertype {
@@ -19,10 +19,10 @@ export enum IUsertype {
 }
 
 export enum IUserRole {
-    buyers = "buyers", 
-    sellers = "sellers", 
-    sellersSupervisors = "sellersSupervisors", 
-    internalUsers = "internalUsers", 
-    sysadmins = "sysadmins", 
-    transportationProviders = "transportationProviders"
+    buyers = 'buyers',
+    sellers = 'sellers',
+    sellersSupervisors = 'sellersSupervisors',
+    internalUsers = 'internalUsers',
+    sysadmins = 'sysadmins',
+    transportationProviders = 'transportationProviders'
 }
