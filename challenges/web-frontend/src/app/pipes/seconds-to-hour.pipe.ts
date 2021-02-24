@@ -11,7 +11,7 @@ export class SecondsToHourPipe implements PipeTransform {
     let seconds = (minutes % 1) * 60;
 
     hours = Math.floor(hours);
-    minutes = Math.floor(minutes) === 60 ? 59 : Math.floor(minutes);
+    minutes = Math.floor(minutes);
     seconds = Math.round(seconds) === 60 ? 59 : Math.round(seconds);
 
     let mLeadZero = '';
