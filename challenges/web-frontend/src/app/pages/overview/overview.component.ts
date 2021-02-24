@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuctionsService } from 'src/app/services/auctions/auctions.service';
 import { transition, trigger, query, style, animate } from '@angular/animations';
 
@@ -17,7 +17,7 @@ import { transition, trigger, query, style, animate } from '@angular/animations'
     ])
   ]
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnDestroy {
   breakpoint;
   auctions;
   colNumber;
@@ -69,7 +69,7 @@ export class OverviewComponent implements OnInit {
       }, 1000);
   }
 
-  onDestory() {
+  ngOnDestroy() {
     clearInterval(this.timer);
   }
 
