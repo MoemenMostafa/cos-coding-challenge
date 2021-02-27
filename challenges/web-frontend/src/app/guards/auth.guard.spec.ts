@@ -11,7 +11,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthGuard } from './auth.guard';
 
 describe('AuthGuard', () => {
-  const injector = getTestBed();
   const routeMock: any = { snapshot: {} };
   const routeStateMock: any = { snapshot: {}, url: '/overview' };
   const routerMock = { navigate: jasmine.createSpy('navigate') };
@@ -30,8 +29,6 @@ describe('AuthGuard', () => {
   }));
 
   it('should redirect an unauthenticated user to the login route', inject([AuthGuard], async (guard: AuthGuard) => {
-    guard = injector.get(AuthGuard);
-
     expect(await guard.canActivate(routeMock, routeStateMock)).toEqual(false);
     expect(routerMock.navigate).toHaveBeenCalledWith(['login'], Object({ queryParams: Object({ returnUrl: '/overview' }) }));
   }));
