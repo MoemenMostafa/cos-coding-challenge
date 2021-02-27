@@ -10,16 +10,19 @@ export class RoleGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const loggedInUser = this.authService.loggedInUserValue;
-
-    const roles = route.data.roles as Array<string>;
-    const loggedInUserRoles = loggedInUser.privileges.split('~');
-    const matchedRoles = roles.filter(value => loggedInUserRoles.includes(value));
-
-    if (matchedRoles.length > 0) {
+    if (this.isMatchedRole(route)) {
       return true;
     }
     AppErrorHandler.showError({ message: 'USER_MISSING_ROLE' });
     return false;
+  }
+
+  isMatchedRole(route): boolean {
+    const loggedInUser = this.authService.loggedInUserValue;
+    const roles = route.data.roles as Array<string>;
+    const loggedInUserRoles = loggedInUser.privileges.split('~');
+    const matchedRoles = roles.filter(value => loggedInUserRoles.includes(value));
+
+    return matchedRoles.length > 0;
   }
 }
