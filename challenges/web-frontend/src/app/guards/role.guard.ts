@@ -13,7 +13,7 @@ export class RoleGuard implements CanActivate {
     if (this.isMatchedRole(route)) {
       return true;
     }
-    AppErrorHandler.showError({ message: 'USER_MISSING_ROLE' });
+    this.showError();
     return false;
   }
 
@@ -24,5 +24,8 @@ export class RoleGuard implements CanActivate {
     const matchedRoles = roles.filter(value => loggedInUserRoles.includes(value));
 
     return matchedRoles.length > 0;
+  }
+  showError() {
+    AppErrorHandler.showError({ message: 'USER_MISSING_ROLE' });
   }
 }
